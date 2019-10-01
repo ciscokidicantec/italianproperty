@@ -24,15 +24,31 @@ Public Class getpostcodes
             command.CommandText = sqlquery
             data = command.ExecuteReader()
 
+            Dim dt As New DataTable
+
+            dt.Columns.Add("First Name", GetType(String))
+            dt.Columns.Add("Last Name", GetType(String))
+
+
+
             While data.Read
                 If data.HasRows = True Then
                     ListBox1.Items.Add("First Name = " + data(2).ToString + "   " + "Last Name = " + data(4).ToString)
+                    dt.Rows.Add("First Name = " + data(2).ToString + "   " + "Last Name = " + data(4).ToString)
                 End If
             End While
         Catch ex As Exception
             MsgBox(ex.Message)
 
         End Try
+
+        'GridView2.DataSource = dt
+        'GridView2.DataBind()
+
+
+
+        'GridView2.DataSource = data
+        'GridView2.DataBind()
 
         myconnection.Close()
 
