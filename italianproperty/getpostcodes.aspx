@@ -15,7 +15,11 @@
             </asp:GridView>
             <br />
             <br />
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:estateporrtalConnectionString2 %>" ProviderName="<%$ ConnectionStrings:estateporrtalConnectionString2.ProviderName %>" SelectCommand="SELECT * FROM estate"></asp:SqlDataSource>
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:estateportalConnectionString %>" ProviderName="<%$ ConnectionStrings:estateportalConnectionString.ProviderName %>" SelectCommand="SELECT * FROM estate"></asp:SqlDataSource>
+            <br />
+            <br />
+            <br />
+            <asp:Button ID="Button1" runat="server" Text="Button" />
             <br />
             <br />
             <br />
