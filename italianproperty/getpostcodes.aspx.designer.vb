@@ -41,6 +41,15 @@ Partial Public Class getpostcodes
     Protected WithEvents SqlDataSource1 As Global.System.Web.UI.WebControls.SqlDataSource
 
     '''<summary>
+    '''ListBox1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ListBox1 As Global.System.Web.UI.WebControls.ListBox
+
+    '''<summary>
     '''Button1 control.
     '''</summary>
     '''<remarks>
