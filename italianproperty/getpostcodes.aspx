@@ -15,6 +15,11 @@
             </asp:GridView>
             <br />
             <br />
+            <asp:Image ID="Image1" runat="server" Width="550px" ImageUrl="~/App_Data/testdownloadmario.jpg" />
+            <br />
+            <br />
+            <img alt="" id="marioimg" height="500" src="App_Data/testdownloadmario.jpg" /><br />
+            <br />
             <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:estateportalConnectionString %>" ProviderName="<%$ ConnectionStrings:estateportalConnectionString.ProviderName %>" SelectCommand="SELECT * FROM estate"></asp:SqlDataSource>
             <br />
             <asp:ListBox ID="ListBox1" runat="server" Width="469px"></asp:ListBox>

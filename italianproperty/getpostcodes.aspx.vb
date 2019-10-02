@@ -51,13 +51,18 @@ Public Class getpostcodes
 
             dt.Columns.Add("First Name", GetType(String))
             dt.Columns.Add("Last Name", GetType(String))
+            dt.Columns.Add("Email", GetType(String))
+
 
             While data.Read
+
                 If data.HasRows = True Then
-                    ListBox1.Items.Add("First Name = " + data(2).ToString + "   " + "Last Name = " + data(4).ToString)
-                    dt.Rows.Add(data(2).ToString, data(4).ToString)
+                    ListBox1.Items.Add("First Name = " + data(2).ToString + "   " + "Last Name = " + data(4).ToString + "   Email = " + data(17).ToString)
+                    dt.Rows.Add(data(2).ToString, data(4).ToString, data(17).ToString)
                 End If
             End While
+
+            Image1.ImageUrl = dt.Rows.Item(1%).Item(2%).ToString
 
             GridView2.DataSource = dt
             GridView2.DataBind()
@@ -68,6 +73,11 @@ Public Class getpostcodes
         End Try
 
         myconnection.Close()
+
+    End Sub
+
+    Protected Sub GridView1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles GridView1.SelectedIndexChanged
+
 
     End Sub
 End Class

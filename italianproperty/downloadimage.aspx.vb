@@ -13,6 +13,7 @@ Public Class downloadimage
         Dim Destination As String = "C:\Users\Public\Documents\testdownloadmario.jpg"
 
         'Dim mysource As String = "https://www.pornhub.com/view_video.php?viewkey=ph5c1554734d8d0"
+        'Dim source As String = "C\compress\winstera.jpg"
 
         Dim mydestination = "C:\Users\Public\Documents\"
         Dim Client As New WebClient

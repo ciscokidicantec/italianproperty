@@ -97,6 +97,7 @@
     <Import Include="System.Web.UI.HtmlControls" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\testdownloadmario.jpg" />
     <Content Include="downloadimage.aspx" />
     <Content Include="getpostcodes.aspx" />
     <Content Include="Web.config" />
