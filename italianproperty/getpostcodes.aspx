@@ -18,7 +18,10 @@
             <asp:Image ID="Image1" runat="server" Width="550px" ImageUrl="~/App_Data/testdownloadmario.jpg" />
             <br />
             <br />
-            <img alt="" id="marioimg" height="500" src="App_Data/testdownloadmario.jpg" /><br />
+            <br />
+            <asp:Image ID="Image2" runat="server" ImageUrl="<%$ ConnectionStrings:estateportalConnectionString %>" Width="550px" />
+            <br />
+            <br />
             <br />
             <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:estateportalConnectionString %>" ProviderName="<%$ ConnectionStrings:estateportalConnectionString.ProviderName %>" SelectCommand="SELECT * FROM estate"></asp:SqlDataSource>
             <br />

@@ -62,7 +62,10 @@ Public Class getpostcodes
                 End If
             End While
 
-            Image1.ImageUrl = dt.Rows.Item(1%).Item(2%).ToString
+            Dim imagestring As String = dt.Rows.Item(0%).Item(2%).ToString
+
+            Image1.ImageUrl = dt.Rows.Item(0%).Item(2%).ToString
+            MsgBox(dt.Rows.Item(0%).Item(2%).ToString)
 
             GridView2.DataSource = dt
             GridView2.DataBind()
