@@ -14,8 +14,31 @@ Public Class getpostcodes
         Dim connStr As ConnectionStringSettings = ConfigurationManager.ConnectionStrings("estateportalConnectionString")
         Dim sqlquery As String = "SELECT * FROM estate"
         Dim data As MySqlDataReader
+        Dim secondreader As MySqlDataReader
+
+        Dim secondconnection As MySql.Data.MySqlClient.MySqlConnection = New MySql.Data.MySqlClient.MySqlConnection
 
         myconnection.ConnectionString = connStr.ToString
+        secondconnection.ConnectionString = connStr.ToString
+
+
+        Try
+            secondconnection.Open()
+            Dim command As New MySqlCommand
+            command.Connection = secondconnection
+            command.CommandText = sqlquery
+            secondreader = command.ExecuteReader()
+
+            GridView3.DataSource = secondreader
+            GridView3.DataBind()
+
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+
+        End Try
+
+        secondconnection.Close()
 
         Try
             myconnection.Open()
