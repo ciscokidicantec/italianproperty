@@ -36,6 +36,11 @@
             <asp:GridView ID="GridView3" runat="server" Width="550px">
             </asp:GridView>
             <br />
+            <asp:ListBox ID="ListBox2" runat="server" Width="469px"></asp:ListBox>
+            <br />
+            <br />
+            <asp:ListBox ID="ListBox3" runat="server" Width="469px"></asp:ListBox>
+            <br />
             <br />
             <asp:Button ID="Button1" runat="server" Text="Button" />
             <br />

@@ -1,5 +1,8 @@
 ﻿Imports MySql.Data.MySqlClient
 Imports System.Configuration
+Imports System.IO
+Imports System.Web
+
 
 Public Class getpostcodes
     Inherits System.Web.UI.Page
@@ -21,6 +24,63 @@ Public Class getpostcodes
         myconnection.ConnectionString = connStr.ToString
         secondconnection.ConnectionString = connStr.ToString
 
+        'App_LocalResources
+
+        'Dim sr As StreamReader
+        ' Dim line As String
+        Dim ResultBlock As String = ""
+
+        Dim s As String = ""
+
+        Dim postcodetable As New DataTable
+
+
+        postcodetable.Columns.Add("Post Code", GetType(String))
+        postcodetable.Columns.Add("Place", GetType(String))
+
+        For Each row As DataRow In postcodetable.Rows
+            ' Write value of first Integer.
+            ListBox3.Items.Add(row.Field(Of Integer)(0).ToString() + "   " + row.Field(Of String)(2).ToString() + "   " + row.Field(Of String)(1).ToString() + "   " + row.Field(Of Date)(3).ToString())
+        Next
+
+        Dim firstpcpos As Integer = 0%
+        Dim lastpcpos As Integer = 0%
+
+        Dim pcstring As String = ""
+        Dim placestring As String = ""
+
+
+        For Each line As String In File.ReadLines("~/App_LocalResources/pc.txt")
+            'For Each line As String In File.ReadLines("C:\Users\Owner\source\repos\italianproperty\italianproperty\App_LocalResources\pc.txt")
+
+            ' For Each line As String In File.ReadLines("C:\Users\Owner\Documents\pc.txt")
+            firstpcpos = InStr(line, " ")
+            pcstring = line.TrimEnd.ToString().Substring(0%, firstpcpos%)
+            placestring = line.TrimEnd.ToString().Substring(firstpcpos%, Len(line) - firstpcpos)
+            postcodetable.Rows.Add(placestring, pcstring)
+            ListBox2.Items.Add(line.TrimEnd)
+        Next
+
+        Dim table As New DataTable
+
+
+        ' Create four typed columns in the DataTable.
+        table.Columns.Add("Dosage", GetType(Integer))
+        table.Columns.Add("Drug", GetType(String))
+        table.Columns.Add("Patient", GetType(String))
+        table.Columns.Add("Date", GetType(DateTime))
+
+        ' Add five rows with those columns filled in the DataTable.
+        table.Rows.Add(25, "Indocin", "David", DateTime.Now)
+        table.Rows.Add(50, "Enebrel", "Sam", DateTime.Now)
+        table.Rows.Add(10, "Hydralazine", "Christoff", DateTime.Now)
+        table.Rows.Add(21, "Combivent", "Janet", DateTime.Now)
+        table.Rows.Add(100, "Dilantin", "Melanie", DateTime.Now)
+
+        For Each row As DataRow In table.Rows
+            ' Write value of first Integer.
+            ListBox1.Items.Add(row.Field(Of Integer)(0).ToString() + "   " + row.Field(Of String)(2).ToString() + "   " + row.Field(Of String)(1).ToString() + "   " + row.Field(Of Date)(3).ToString())
+        Next
 
         Try
             secondconnection.Open()
@@ -62,7 +122,7 @@ Public Class getpostcodes
                 End If
             End While
 
-            Dim imagestring As String = dt.Rows.Item(0%).Item(2%).ToString
+            Dim magestring As String = dt.Rows.Item(0%).Item(2%).ToString
 
             Image1.ImageUrl = dt.Rows.Item(0%).Item(2%).ToString
             MsgBox(dt.Rows.Item(0%).Item(2%).ToString)

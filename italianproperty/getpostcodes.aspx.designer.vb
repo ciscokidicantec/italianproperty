@@ -86,6 +86,24 @@ Partial Public Class getpostcodes
     Protected WithEvents GridView3 As Global.System.Web.UI.WebControls.GridView
 
     '''<summary>
+    '''ListBox2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ListBox2 As Global.System.Web.UI.WebControls.ListBox
+
+    '''<summary>
+    '''ListBox3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ListBox3 As Global.System.Web.UI.WebControls.ListBox
+
+    '''<summary>
     '''Button1 control.
     '''</summary>
     '''<remarks>
