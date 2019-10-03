@@ -49,11 +49,9 @@ Public Class getpostcodes
         Dim pcstring As String = ""
         Dim placestring As String = ""
 
+        Dim app_path = HttpContext.Current.Server.MapPath("~/App_Data/pc.txt")
 
-        For Each line As String In File.ReadLines("~/App_LocalResources/pc.txt")
-            'For Each line As String In File.ReadLines("C:\Users\Owner\source\repos\italianproperty\italianproperty\App_LocalResources\pc.txt")
-
-            ' For Each line As String In File.ReadLines("C:\Users\Owner\Documents\pc.txt")
+        For Each line As String In File.ReadLines(app_path)
             firstpcpos = InStr(line, " ")
             pcstring = line.TrimEnd.ToString().Substring(0%, firstpcpos%)
             placestring = line.TrimEnd.ToString().Substring(firstpcpos%, Len(line) - firstpcpos)
