@@ -17,31 +17,38 @@ Public Class insertpostcodes
 
         Dim myconnection As MySql.Data.MySqlClient.MySqlConnection = New MySql.Data.MySqlClient.MySqlConnection
         Dim connStr As ConnectionStringSettings = ConfigurationManager.ConnectionStrings("estateportalConnectionString")
+        myconnection.ConnectionString = connStr.ToString
 
-        'Dim myconnect As New SqlClient.SqlConnection
-        '[myconnect.ConnectionString = "Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\DB\InvDB.mdf;Integrated Security=True;User Instance=True"
+        Dim mycommand As MySql.Data.MySqlClient.MySqlCommand = New MySql.Data.MySqlClient.MySqlCommand()
+        mycommand.CommandText = "INSERT INTO postcodes VALUES ('@indexpostcode','@postcode', '@codeareadescription')"
+        mycommand.Connection = myconnection
 
-        Dim mycommand As MySql.Data.MySqlClient.MySqlCommand = New MySql.Data.MySqlClient.MySqlCommand
+        'mycommand.CommandText = "INSERT INTO 'postcodes' ('index', 'postcode', 'codeareadescription' VALUES (51, 'FY', 'Fylde')"
+        'mycommand.CommandText = "INSERT INTO 'postcodes' ('index', 'postcode', 'codeareadescription' VALUES (51, 'FY', 'Fylde')"
 
-        'Dim mycommand As mySqlClient.mySqlCommand = New SqlClient.SqlCommand()
+        ' Dim query As String = "INSERT INTO [PHONE DIRECTORY] VALUES(@id, @description)"
+        'Dim command As New SqlCommand(query, conn)
 
-        myconnection.ConnectionString = connStr.ConnectionString
-
-        mycommand.CommandText = "INSERT INTO postcodes (index, postcode, codeareadescription VALUES (@index, @postcode, @codeareadescription)"
-        myconnection.Open()
 
         Try
-            mycommand.Parameters.Add("@index", SqlDbType.Int).Value = 1%
-            mycommand.Parameters.Add("@postcode", SqlDbType.NVarChar).Value = "abc"
-            mycommand.Parameters.Add("@codeareadescription", SqlDbType.NVarChar).Value = "def"
+            myconnection.Open()
+
+            '            mycommand.Parameters.Add("@index", SqlDbType.Int).Value = Convert.ToInt32(5)
+            mycommand.Parameters.Add("@indexpostcode", SqlDbType.Int).Value = Convert.ToInt32(2%)
+            mycommand.Parameters.Add("@postcode", SqlDbType.NVarChar).Value = "FY"
+            mycommand.Parameters.Add("@codeareadescription", SqlDbType.NVarChar).Value = "FYLDE"
+
+
+            ' mycommand.Parameters.AddWithValue("@index", 50%)
+            'mycommand.Parameters.AddWithValue("@postcode", "FN")
+            'mycommand.Parameters.AddWithValue("@codeareadescription", "Fylde")
             numberofins = mycommand.ExecuteNonQuery()
             MsgBox("Success")
         Catch ex As System.Data.SqlClient.SqlException
             MsgBox(ex.Message)
         End Try
+
         myconnection.Close()
-
-
 
     End Sub
 End Class
