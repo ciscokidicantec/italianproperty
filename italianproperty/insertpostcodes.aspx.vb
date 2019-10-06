@@ -13,6 +13,8 @@ Public Class insertpostcodes
 
     Protected Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
 
+        Dim myerrors As String = ""
+
         Dim numberofins As Integer = 0%
 
         Dim myconnection As MySql.Data.MySqlClient.MySqlConnection = New MySql.Data.MySqlClient.MySqlConnection
@@ -33,9 +35,18 @@ Public Class insertpostcodes
         Dim pccode As String = ""
         Dim pccodedescription As String = ""
 
+        Dim readsinallfiledata As String()
+
         Dim pcindex As Integer = 0%
 
         Dim insrttext As String = ""
+
+        readsinallfiledata = File.ReadAllLines(app_path)
+        For Each wholelinearray In readsinallfiledata
+            ListBox2.Items.Add(wholelinearray.TrimEnd)
+        Next
+
+        'Return
 
         mycommand.Connection = myconnection
 
@@ -52,8 +63,9 @@ Public Class insertpostcodes
                 ListBox1.Items.Add(line.TrimEnd)
                 numberofins = mycommand.ExecuteNonQuery()
             Next
-        Catch ex As System.Data.SqlClient.SqlException
-            MsgBox(ex.Message)
+        Catch ex As MySql.Data.MySqlClient.MySqlException
+            myerrors = ex.Number
+            'MsgBox(ex.Message & "  Error Number =  " & ex.Number)
         End Try
 
 
@@ -61,6 +73,7 @@ Public Class insertpostcodes
         'Dim insrttext As String = "INSERT INTO `estateporrtal`.`postcodes` (`indexpostcode`,`postcode`,`codeareadescription`) VALUES ('" & TextBox1.Text & "','" & TextBox2.Text & "','" & TextBox3.Text & "');"
 
         myconnection.Close()
+
 
         Return
 

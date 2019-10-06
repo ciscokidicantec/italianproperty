@@ -12,6 +12,7 @@
         <asp:ListBox ID="ListBox1" runat="server" Height="610px" Width="723px"></asp:ListBox>
     </p>
         <p>
+            <asp:ListBox ID="ListBox2" runat="server" Height="254px" Width="720px"></asp:ListBox>
         <br />
     </p>
         <p>

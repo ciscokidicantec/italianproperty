@@ -101,6 +101,7 @@
     <Content Include="App_Data\pc.txt" />
     <Content Include="downloadimage.aspx" />
     <Content Include="getpostcodes.aspx" />
+    <Content Include="insertimage.aspx" />
     <Content Include="insertpostcodes.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -117,6 +118,13 @@
     </Compile>
     <Compile Include="getpostcodes.aspx.vb">
       <DependentUpon>getpostcodes.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="insertimage.aspx.designer.vb">
+      <DependentUpon>insertimage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="insertimage.aspx.vb">
+      <DependentUpon>insertimage.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="insertpostcodes.aspx.designer.vb">
