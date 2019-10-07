@@ -97,6 +97,7 @@
     <Import Include="System.Web.UI.HtmlControls" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\helen.jpg" />
     <Content Include="App_Data\testdownloadmario.jpg" />
     <Content Include="App_Data\pc.txt" />
     <Content Include="downloadimage.aspx" />
@@ -183,7 +184,7 @@
   <ItemGroup>
     <Folder Include="App_GlobalResources\" />
     <Folder Include="App_LocalResources\" />
-    <Folder Include="NewFolder1\" />
+    <Folder Include="My Project\App_LocalResources\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

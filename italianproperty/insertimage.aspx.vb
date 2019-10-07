@@ -3,6 +3,7 @@ Imports MySql.Data.MySqlClient
 Imports System.Configuration
 Imports System.Web
 Imports System.Drawing
+Imports System.Net
 
 
 
@@ -55,19 +56,86 @@ Public Class insertimage
     End Sub
 
     Protected Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-
         Dim myconnection As MySql.Data.MySqlClient.MySqlConnection = New MySql.Data.MySqlClient.MySqlConnection
         Dim connStr As ConnectionStringSettings = ConfigurationManager.ConnectionStrings("estateportalConnectionString")
-        Dim insrttext As String = ""
-        Dim numberofins As Integer = 0%
+        Dim insrttext As String
+        Dim numberofins As Integer
+
+        Dim myimages As New System.Web.UI.WebControls.Image
+        'myimages.ImageUrl = "~/App_Data/" & "helen.jpg"
+        'myimages.ImageUrl = "C:\Users\Owner\source\repos\italianproperty\italianproperty\App_Data\updatedhelen.jpg"
+        myimages.ImageUrl = "https://www.zoopla.co.uk/static/images/home-page/carousel-for-sale-london.png"
+
+        myimages.Height = "250"
+        Me.Controls.Add(myimages)
+
+        'get absolute path from relative path
+        Dim fullPath As String = Path.GetFullPath("~/App_Data/" & "helen.jpg")
+
+        Dim virtualpath As String = Server.MapPath("~/App_Data/" & "helen.jpg")
+
+        Dim relativePath As String = HttpContext.Current.Server.MapPath("~/App_Data/" & "helen.jpg")
+
+        Dim serverpathurl As String = HttpContext.Current.Request.Url.AbsoluteUri
+
+        Dim hosturl As String = HttpContext.Current.Request.Url.Host
+
+        'Dim getwholepath As String = Request.Url.GetLeftPart(UriPartial.Authority) + Request.ApplicationPath + "italianproperty/" + "App_Data/helen.jpg"
+        'Dim getwholepath As String = Request.Url.GetLeftPart(UriPartial.Authority) + Request.ApplicationPath + "App_Data/helen.jpg"
+        'Dim getwholepath As String = "App_Data/helen.jpg"
+        Dim getwholepath As String = "C:\Users\Owner\source\repos\italianproperty\italianproperty\App_Data\testdownloadmario.jpg"
+
+
+
+
+        Dim querypath As String = Request.Url.AbsoluteUri
+
+        Dim pandq As String = Request.Url.PathAndQuery
+
+        Dim apppath As String = System.IO.Path.GetFullPath(Server.MapPath("~/App_Path/helen.jpg"))
+
+
+        Dim myfullpathimages As New System.Web.UI.WebControls.Image
+        myfullpathimages.ImageUrl = getwholepath
+        myfullpathimages.Height = "450"
+        myfullpathimages.BorderColor = Color.Yellow
+
+        Me.Controls.Add(myfullpathimages)
+
+
+
+        Return
+
+        Dim myimg As New Bitmap(200, 200)
+
+        Dim mynewimg As New Bitmap(200, 200)
+        mynewimg.Save("C:\Users\Owner\source\repos\italianproperty\italianproperty\App_Data\updatedhelen.jpg")
+
+        Using GraphicsObject As Graphics = Graphics.FromImage(mynewimg)
+            GraphicsObject.DrawImage(mynewimg, 0, 0)
+            'X, Y are the coordinates (inside the bitmap we're drawing into), of where the new bitmap will be drawn
+            ' The bitmap will be drawn with its original Width and Height
+        End Using
+
+
+        Dim Img As New Bitmap("C:\Users\Owner\source\repos\italianproperty\italianproperty\App_Data\helen.jpg")
+
+        Return
+
+        Dim mymStream As New MemoryStream
+        Dim myImageBytes As Byte()
+
+        Img.Save(mymStream, Imaging.ImageFormat.Png)
+        myImageBytes = mymStream.ToArray
+
+        Img.Dispose()
 
         myconnection.ConnectionString = connStr.ToString
 
         'Save an Image to a memory stream so you can get the bytes
         Dim sampleImage As Bitmap = New Bitmap(100, 100)
-        Dim mStream As New System.IO.MemoryStream
+        Dim mStream As New MemoryStream
         Dim ImageBytes As Byte()
-        'Dim dummytext As String
 
         sampleImage.Save(mStream, Imaging.ImageFormat.Png)
         ImageBytes = mStream.ToArray
@@ -106,7 +174,7 @@ Public Class insertimage
         'Sample Insert image command
         'Save the bytes from the image into a image or varbinary column
 
-        Dim pcindex = 133%
+        Dim pcindex = 134%
         Dim image As String = "dummytest"
 
         'dummytext = "INSERT INTO `estateporrtal`.`postcodes` (`indexpostcode`,`postcode`,`codeareadescription`) VALUES ('" & pcindex & "','" & pccode & "', '" & pccodedescription & "');"
@@ -142,10 +210,9 @@ Public Class insertimage
 
         rdr = com.ExecuteReader
         If rdr.Read Then
-            Dim newMstream As New System.IO.MemoryStream(CType(rdr.Item("MyImage"), Byte()))
+            Dim newMstream As New MemoryStream(CType(rdr.Item("Image"), Byte()))
             'Create a new image from the bytes from the memory
             Dim ImageFromDB As New Bitmap(newMstream)
-
         End If
 
         com.Dispose()
