@@ -98,7 +98,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\helen.jpg" />
-    <Content Include="App_Data\testdownloadmario.jpg" />
+    <Content Include="Images\testdownloadmario.jpg" />
     <Content Include="App_Data\pc.txt" />
     <Content Include="downloadimage.aspx" />
     <Content Include="getpostcodes.aspx" />

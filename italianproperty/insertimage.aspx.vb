@@ -64,26 +64,28 @@ Public Class insertimage
         Dim myimages As New System.Web.UI.WebControls.Image
         'myimages.ImageUrl = "~/App_Data/" & "helen.jpg"
         'myimages.ImageUrl = "C:\Users\Owner\source\repos\italianproperty\italianproperty\App_Data\updatedhelen.jpg"
-        myimages.ImageUrl = "https://www.zoopla.co.uk/static/images/home-page/carousel-for-sale-london.png"
+        'myimages.ImageUrl = "https://www.zoopla.co.uk/static/images/home-page/carousel-for-sale-london.png"
+        myimages.ImageUrl = "images/" & "helen.jpg"
+
 
         myimages.Height = "250"
         Me.Controls.Add(myimages)
 
         'get absolute path from relative path
-        Dim fullPath As String = Path.GetFullPath("~/App_Data/" & "helen.jpg")
+        'Dim fullPath As String = Path.GetFullPath("~/App_Data/" & "helen.jpg")
 
-        Dim virtualpath As String = Server.MapPath("~/App_Data/" & "helen.jpg")
+        'Dim virtualpath As String = Server.MapPath("~/App_Data/" & "helen.jpg")
 
-        Dim relativePath As String = HttpContext.Current.Server.MapPath("~/App_Data/" & "helen.jpg")
+        'Dim relativePath As String = HttpContext.Current.Server.MapPath("~/App_Data/" & "helen.jpg")
 
-        Dim serverpathurl As String = HttpContext.Current.Request.Url.AbsoluteUri
+        'Dim serverpathurl As String = HttpContext.Current.Request.Url.AbsoluteUri
 
-        Dim hosturl As String = HttpContext.Current.Request.Url.Host
+        'Dim hosturl As String = HttpContext.Current.Request.Url.Host
 
         'Dim getwholepath As String = Request.Url.GetLeftPart(UriPartial.Authority) + Request.ApplicationPath + "italianproperty/" + "App_Data/helen.jpg"
         'Dim getwholepath As String = Request.Url.GetLeftPart(UriPartial.Authority) + Request.ApplicationPath + "App_Data/helen.jpg"
         'Dim getwholepath As String = "App_Data/helen.jpg"
-        Dim getwholepath As String = "C:\Users\Owner\source\repos\italianproperty\italianproperty\App_Data\testdownloadmario.jpg"
+        Dim getwholepath As String = "images\helen.jpg"
 
 
 
@@ -106,31 +108,31 @@ Public Class insertimage
 
         Return
 
-        Dim myimg As New Bitmap(200, 200)
+        'Dim myimg As New Bitmap(200, 200)
 
-        Dim mynewimg As New Bitmap(200, 200)
-        mynewimg.Save("C:\Users\Owner\source\repos\italianproperty\italianproperty\App_Data\updatedhelen.jpg")
+        'Dim mynewimg As New Bitmap(200, 200)
+        'mynewimg.Save("C:\Users\Owner\source\repos\italianproperty\italianproperty\App_Data\updatedhelen.jpg")
 
-        Using GraphicsObject As Graphics = Graphics.FromImage(mynewimg)
-            GraphicsObject.DrawImage(mynewimg, 0, 0)
-            'X, Y are the coordinates (inside the bitmap we're drawing into), of where the new bitmap will be drawn
-            ' The bitmap will be drawn with its original Width and Height
-        End Using
+        'Using GraphicsObject As Graphics = Graphics.FromImage(mynewimg)
+        'GraphicsObject.DrawImage(mynewimg, 0, 0)
+        'X, Y are the coordinates (inside the bitmap we're drawing into), of where the new bitmap will be drawn
+        ' The bitmap will be drawn with its original Width and Height
+        'End Using
 
 
-        Dim Img As New Bitmap("C:\Users\Owner\source\repos\italianproperty\italianproperty\App_Data\helen.jpg")
+        'Dim Img As New Bitmap("C:\Users\Owner\source\repos\italianproperty\italianproperty\App_Data\helen.jpg")
 
         Return
 
-        Dim mymStream As New MemoryStream
-        Dim myImageBytes As Byte()
+        ' Dim mymStream As New MemoryStream
+        'Dim myImageBytes As Byte()
 
-        Img.Save(mymStream, Imaging.ImageFormat.Png)
-        myImageBytes = mymStream.ToArray
+        'Img.Save(mymStream, Imaging.ImageFormat.Png)
+        'myImageBytes = mymStream.ToArray
 
-        Img.Dispose()
+        'Img.Dispose()
 
-        myconnection.ConnectionString = connStr.ToString
+        'myconnection.ConnectionString = connStr.ToString
 
         'Save an Image to a memory stream so you can get the bytes
         Dim sampleImage As Bitmap = New Bitmap(100, 100)

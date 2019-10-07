@@ -33,20 +33,20 @@
         <p>
             &nbsp;</p>
         <p>
-            <img alt="" class="auto-style1" src="App_Data/helen.jpg" /><img alt="This is helen" class="auto-style2" src="Images/helen.jpg" /></p>
+            <img alt="" class="auto-style1" src="Images/helen.jpg" /><img alt="This is helen" class="auto-style2" src="Images/helen.jpg" /></p>
         <p>
             &nbsp;</p>
         <p>
             &nbsp;</p>
         <p>
-            <img class="auto-style3" src="Images/helen.jpg" /><img class="auto-style3" src="Images/helen.jpg" /><img class="auto-style3" src="Images/helen.jpg" /><asp:Image ID="Image2" runat="server" Height="145px" ImageUrl="App_Data/helen.jpg" Width="167px" />
+            <img class="auto-style3" src="Images/helen.jpg" /><img class="auto-style3" src="Images/helen.jpg" /><img class="auto-style3" src="Images/helen.jpg" /><asp:Image ID="Image2" runat="server" Height="145px" ImageUrl="~/Images/helen.jpg" Width="167px" />
         </p>
         <p>
             &nbsp;</p>
         <p>
             &nbsp;</p>
         <p>
-            <asp:Image ID="Image3" runat="server" Height="252px" Width="277px" ImageUrl="~/App_Data/testdownloadmario.jpg" />
+            <asp:Image ID="Image3" runat="server" Height="252px" Width="277px" ImageUrl="images/testdownloadmario.jpg" />
         </p>
         <p>
             &nbsp;</p>
