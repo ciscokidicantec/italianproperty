@@ -153,8 +153,8 @@ Public Class insertimage
         Dim ms As New MemoryStream
 
         sampleImage.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg)
-        Dim var As Int64 = Convert.ToBase64String(ms.ToArray())
-        mybitmap.Src = "data:image/gif;base64," + var
+        'Dim var As Int64 = Convert.ToBase64String(ms.ToArray())
+        'mybitmap.Src = "data:image/gif;base64," + var
 
         Dim mycom As New MySql.Data.MySqlClient.MySqlCommand
         'Dim myrdr As MySql.Data.MySqlClient.MySqlDataReader
