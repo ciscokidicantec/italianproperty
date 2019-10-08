@@ -33,7 +33,7 @@
         <p>
             &nbsp;</p>
         <p>
-            <img alt="" class="auto-style1" src="Images/helen.jpg" /><img alt="This is helen" class="auto-style2" src="Images/helen.jpg" /></p>
+            <img alt="" id="mybitmap" src="Images/helen.jpg" height="400" /><img alt="This is helen" class="auto-style2" src="Images/helen.jpg" /></p>
         <p>
             &nbsp;</p>
         <p>

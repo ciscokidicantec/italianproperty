@@ -5,10 +5,6 @@ Imports System.Web
 Imports System.Drawing
 Imports System.Net
 
-
-
-
-
 Public Class insertimage
     Inherits System.Web.UI.Page
 
@@ -30,9 +26,19 @@ Public Class insertimage
         Dim sqlcmd As New MySqlCommand
         Dim sql As String
 
+        Dim insrttext As String = ""
+        Dim pcindex As Integer = 1008%
+        Dim Image() As Byte
+
         myconnection.ConnectionString = connStr.ToString
 
         ms.Close()
+
+        'insrttext = "INSERT INTO `estateporrtal`.`images` (`imageindex`,`image`) VALUES ('" & pcindex & "','" & Image & "');"
+
+        Dim com As New MySqlCommand(insrttext, myconnection)
+
+
         sql = " INSERT INTO images (imageindex, image)" &
             " VALUES (@imageindex, @image)"
 
@@ -106,7 +112,7 @@ Public Class insertimage
 
 
 
-        Return
+        'Return
 
         'Dim myimg As New Bitmap(200, 200)
 
@@ -122,7 +128,7 @@ Public Class insertimage
 
         'Dim Img As New Bitmap("C:\Users\Owner\source\repos\italianproperty\italianproperty\App_Data\helen.jpg")
 
-        Return
+        'Return
 
         ' Dim mymStream As New MemoryStream
         'Dim myImageBytes As Byte()
@@ -141,6 +147,14 @@ Public Class insertimage
 
         sampleImage.Save(mStream, Imaging.ImageFormat.Png)
         ImageBytes = mStream.ToArray
+
+        '********************************************************************************************************************************
+
+        Dim ms As New MemoryStream
+
+        sampleImage.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg)
+        Dim var As Int64 = Convert.ToBase64String(ms.ToArray())
+        mybitmap.Src = "data:image/gif;base64," + var
 
         Dim mycom As New MySql.Data.MySqlClient.MySqlCommand
         'Dim myrdr As MySql.Data.MySqlClient.MySqlDataReader
@@ -176,16 +190,30 @@ Public Class insertimage
         'Sample Insert image command
         'Save the bytes from the image into a image or varbinary column
 
-        Dim pcindex = 134%
+        Dim pcindex = 194%
         Dim image As String = "dummytest"
 
-        'dummytext = "INSERT INTO `estateporrtal`.`postcodes` (`indexpostcode`,`postcode`,`codeareadescription`) VALUES ('" & pcindex & "','" & pccode & "', '" & pccodedescription & "');"
+        'SHOW VARIABLES LIKE 'max_allowed_packet';
 
-        insrttext = "INSERT INTO `estateporrtal`.`images` (`imageindex`,`image`) VALUES ('" & pcindex & "','" & image & "');"
+        'VALUES (1, 20, LOAD_FILE('/data/test.txt'));
+
+        'C:\Users\Owner\source\repos\italianproperty\italianproperty\Images\helen.jpg
+
+        insrttext = "INSERT INTO `estateporrtal`.`images` (`imageindex`,`image`) VALUES(198, LOAD_FILE('Images/helen.jpg'));"
+
+        'insrttext = "INSERT INTO `estateporrtal`.`images` (`imageindex`,`image`) VALUES(1955, LOAD_FILE('~/Images/helen.jpg'));"
+        'insrttext = "INSERT INTO `estateporrtal`.`images` (`imageindex`,`image`) VALUES(1955, LOAD_FILE('~/Images/helen.jpg'));"
+        'insrttext = "INSERT INTO `estateporrtal`.`images` (`imageindex`,`image`) VALUES(1992, LOAD_FILE('Images/helen.jpg'));"
+
+        'dummytext = "INSERT INTO `estateporrtal`.`postcodes` (`indexpostcode`,`postcode`,`codeareadescription`) VALUES ('" & pcindex & "','" & pccode & "', '" & pccodedescription & "');"
+        'insrttext = "INSERT INTO `estateporrtal`.`images` (`imageindex`,`image`) VALUES ('" & pcindex & "','" & image & "');"
 
         Dim com As New MySqlCommand(insrttext, myconnection)
 
         'com.CommandText = insrttext
+
+        'myconnection = MySqlConnection(connStr.ToString)
+        myconnection.ConnectionString = connStr.ToString
 
         Try
             myconnection.Open()
@@ -197,6 +225,8 @@ Public Class insertimage
             MsgBox(ex.Message & "  Error Number =  " & ex.Number)
         End Try
 
+        'Return
+
         'an image column or varbinary column
         'com.Parameters.Add("@imageindex", SqlDbType.Image)
         'com.Parameters("@MyImage").Value = ImageBytes
@@ -206,20 +236,47 @@ Public Class insertimage
         'Read the bytes from the table and create a new memory stream from them
         com.CommandText = "Select * From images"
 
-        myconnection.Open()
+        'Select Case MyBlobColumn From MyTable Where UserId = 20;
+        myconnection.ConnectionString = connStr.ToString
 
-        Dim rdr As MySqlDataReader
+        'Dim b As Bitmap = New Bitmap("asdf.jpg")
+        'Dim myImage As Image = CType(b, Byte())
 
-        rdr = com.ExecuteReader
-        If rdr.Read Then
-            Dim newMstream As New MemoryStream(CType(rdr.Item("Image"), Byte()))
-            'Create a new image from the bytes from the memory
-            Dim ImageFromDB As New Bitmap(newMstream)
-        End If
+        Dim ImageFromDB As Bitmap
+        Dim newMstream As MemoryStream
+        Try
+            myconnection.Open()
+            Dim rdr As MySqlDataReader
+            rdr = com.ExecuteReader
+            If rdr.Read Then
+                newMstream = New MemoryStream(CType(rdr.Item("Image"), Byte()))
+                'Create a new image from the bytes from the memory
+                ImageFromDB = New Bitmap(newMstream)
+            End If
+            com.Dispose()
+            myconnection.Close()
+            myconnection.Dispose()
+        Catch ex As MySqlException
+            MsgBox(ex.Message & "  Error Number =  " & ex.Number)
+        End Try
 
-        com.Dispose()
-        myconnection.Close()
-        myconnection.Dispose()
+        'Stream imageStream = New MemoryStream();
+        'Using (Bitmap bmp = New Bitmap(Img))
+
+        Dim RGB As Int64
+        Dim c As Color = Color.Yellow
+
+        For y As Int64 = 0 To ImageFromDB.Height - 1
+            For x As Int64 = 0 To ImageFromDB.Width - 1
+                c = ImageFromDB.GetPixel(x, y)
+                'RGB = CType(c.R + c.G + c.B / 3, Int64)
+                ImageFromDB.SetPixel(x, y, Color.FromArgb(RGB, RGB, RGB))
+            Next
+        Next
+
+        ImageFromDB.Save("C:\compress\marioimg.jpg", System.Drawing.Imaging.ImageFormat.Jpeg)
+
+        'ImageFromDB.Save(newMstream, System.Drawing.Imaging.ImageFormat.Jpeg)
 
 
     End Sub
