@@ -266,6 +266,8 @@ Public Class insertimage
         Dim RGB As Int64
         Dim c As Color = Color.Yellow
 
+        'not working yet
+
         For y As Int64 = 0 To ImageFromDB.Height - 1
             For x As Int64 = 0 To ImageFromDB.Width - 1
                 c = ImageFromDB.GetPixel(x, y)
